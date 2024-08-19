@@ -1,41 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Video Downloader</title>
+    <title>Download de Vídeo do YouTube</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            margin: 0;
+            padding: 20px;
             background-color: #f0f0f0;
         }
+
         .container {
-            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
             background-color: #fff;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            margin-bottom: 20px;
+
+        h1 {
+            text-align: center;
         }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
         button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
+            width: 100%;
+            padding: 10px;
             background-color: #28a745;
             color: #fff;
+            border: none;
+            border-radius: 4px;
             font-size: 16px;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #218838;
         }
@@ -43,10 +57,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>YouTube Video Downloader</h1>
-        <input type="text" id="videoUrl" placeholder="Enter YouTube video URL">
-        <button onclick="downloadVideo()">Download Video</button>
-        <p id="message"></p>
+        <h1>Download de Vídeo do YouTube</h1>
+        <form id="videoForm">
+            <label for="youtubeUrl">URL do Vídeo do YouTube:</label>
+            <input type="text" id="youtubeUrl" placeholder="Cole a URL aqui">
+            <button type="submit">Enviar</button>
+        </form>
+        <div id="status"></div>
     </div>
     <script src="script.js"></script>
 </body>

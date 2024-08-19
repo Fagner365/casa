@@ -1,23 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Video Downloader</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Vídeo do YouTube</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 800px; margin: 0 auto; }
+        iframe { width: 100%; height: 450px; }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Download YouTube Video</h1>
-        <form id="downloadForm">
-            <input type="url" id="videoUrl" placeholder="Enter YouTube Video URL" required>
-            <button type="submit">Download</button>
-        </form>
-        <div id="message"></div>
+        <h1>Vídeo do YouTube</h1>
+        <div id="video-container">
+            <p>Carregando vídeo...</p>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Função para buscar dados do arquivo JSON
+        function loadVideo() {
+            fetch('https://seuservidor.com/dados.json')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('video-container');
+                    if (data.video_url && data.video_title) {
+                        container.innerHTML = `
+                            <h2>${data.video_title}</h2>
+                            <iframe src="${data.video_url}" frameborder="0" allowfullscreen></iframe>
+                        `;
+                    } else {
+                        container.innerHTML = '<p>Nenhum vídeo disponível.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar os dados:', error);
+                    document.getElementById('video-container').innerHTML = '<p>Erro ao carregar o vídeo.</p>';
+                });
+        }
+
+        // Carregar o vídeo quando a página carregar
+        window.onload = loadVideo;
+    </script>
 </body>
 </html>
-
-
